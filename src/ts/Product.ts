@@ -1,12 +1,12 @@
 export interface Product {
-  quantity: number;
-  category: string;
   id: number;
   name: string;
   price: number;
-  parcelamento: [number, number]
-  color: string;
   image: string;
+  color: string;
   size: string;
+  parcelamento: [number, number]
   date: string;
+  quantity?: number;
+  category: string;
 }

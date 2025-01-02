@@ -1,12 +1,17 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
 @import "reset";
 
 $preto:rgba(0, 0, 0, 1);
-$primaria: rgba(251, 149, 62, 1);;
+$primaria: rgba(251, 149, 62, 1);
 $cinza1: rgba(0, 0, 0, 0.5);
 $cinza2: rgba(102, 102, 102, 1);
 $cinza3: rgba(51, 51, 51, 1);
 
+p,
+button{
+  font-family: "Open Sans", serif;
+}
 
 .ocultar-dt{
   display: none;
@@ -135,16 +140,22 @@ header {
       grid-template-columns: repeat(4, 0fr);
       grid-gap: 10px;
       margin-top: 30px;
-      label{
-        display: block;
-        position: relative; 
-        width: 32px;
-        span{
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          cursor: pointer; 
+      .wrapper-tamanhos{
+        display: flex;
+        flex-wrap: wrap;
+        width: 160px;
+        gap: 10px;
+        label{
+          display: block;
+          position: relative; 
+          width: 32px;
+          span{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer; 
+          }
         }
       }
       input{
@@ -157,7 +168,11 @@ header {
       input[type="checkbox"]:checked{
           border-color: #fb953e;
           background: none;
+          
     
+      }
+      > span{
+        font-weight: bold;
       }
     }
     
@@ -170,6 +185,8 @@ header {
   .ordenador {
     display: flex;
     justify-content: flex-end;
+    padding-bottom: 60px;
+
   }
 
   .main-cards {
@@ -271,19 +288,73 @@ footer{
 }
 
 
-#sort-filter {
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: .5em;
-  font-size: 16px;
-  cursor: pointer;
-  margin-bottom: 50px;
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-  width: 150px; 
-  
+// Variáveis
+$primary-color: #FB953E;
+$text-color: #fff;
+$border-color: #ccc;
+$hover-background: darken($primary-color, 10%);
+$font-family: Arial, sans-serif;
+
+// Dropdown Container
+.custom-dropdown {
+  position: relative;
+  width: 200px;
+  font-family: $font-family;
+
+  // Botão Principal
+  .dropdown-button {
+    width: 142px;
+    padding: 12px;
+    color: #000;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    background: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+
+    &::after {
+      content: "▼";
+      margin-left: auto;
+      font-size: 12px;
+    }
+  }
+
+  // Lista Suspensa
+  .dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 142px;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    list-style: none;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+
+    li {
+      padding: 8px 12px;
+      cursor: pointer;
+      color: #333;
+
+      &:hover {
+        background-color: $primary-color;
+        color: $text-color;
+      }
+    }
+
+    // Esconder Dropdown por padrão
+    &.hidden {
+      display: none;
+    }
+  }
 }
+
 
 /* Estilo da Modal */
 .modal {
@@ -294,20 +365,28 @@ footer{
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
+    background-color: black;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
     .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 30%;
+      position: absolute;
+      right: 0;
+      top: 0;
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
         .close {
             color: #aaa;
             float: right;
             font-size: 28px;
             font-weight: bold;
+            background: none;
+            border: none;
           }
         .close:hover,
         .close:focus {
@@ -321,7 +400,7 @@ footer{
         .btn-empty-cart {
             margin-top: 20px;
             padding: 10px;
-            background-color: red;
+            background-color: $primary-color;
             color: white;
             border: none;
             cursor: pointer;
@@ -358,12 +437,83 @@ footer{
   background-color: $primaria; 
 }
 
-
-
+.hidden-desk{
+  display: none;
+}
 
 
 // Estilos para dispositivos móveis
 @media (max-width: 767px) {
+
+
+  .main-container .main-cards .cards-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: inherit;
+    row-gap: 20px;
+    -moz-column-gap: 5px;
+    column-gap: 5px;
+    width: 100%;
+    justify-content: space-evenly;
+    .product-card{
+      width: 45%;
+    }
+  }
+
+  .modal-content{
+    width: 80% !important;
+  }
+
+  .custom-dropdown .dropdown-list{
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    max-height: initial;
+    .hidden-desk{
+      display: flex;
+      color: #666666;
+      font-size: 28px;
+      padding: 20px;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #666666;
+      .close-drop{
+        background: none;
+        border: none;
+      }
+    }
+    li{
+      padding: 20px;
+      &:hover {
+        background:none;
+        color: $preto;
+      }
+    }
+   
+  }
+
+  #dropdown-button{
+    display: block;
+    z-index: 0;
+    width: 100%;
+    height: 50px;
+    font-size: 0;
+    border: 1px solid #666666;
+    background: none;
+    text-align: center;
+    &::after {
+      content: "Ordenar" !important;
+      margin-left: auto;
+      font-size: 24px;
+      line-height: 1;
+      text-align: center;
+    }
+  }
+
+
 
   .ocultar-mb{
     display: none;
@@ -413,6 +563,7 @@ footer{
   background-color: #fff;
   transition: left 0.3s ease-in-out;
 }
+
   
 
 
@@ -522,14 +673,16 @@ footer{
     }
   }
 
-  .main-container .filter #filters .tamanhos{
-    display: inline-grid;
-  }
   .main-container .filter #filters .faixa-de-preco{
     margin-top: 0px;
     flex-direction: column;
     display: flex;
   }
+
+  .main-container .filter #filters .tamanhos .wrapper-tamanhos {
+    width: 200px;
+    gap: 15px;
+}
 
   .accordion {
     background: #fff;

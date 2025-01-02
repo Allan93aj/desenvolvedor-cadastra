@@ -88,7 +88,7 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
-  font: inherit;
+  font-family: "Open Sans", serif;
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -104,6 +104,7 @@ menu,
 nav,
 section {
   display: block;
+  font-family: "Open Sans", serif;
 }
 body {
   line-height: 1;
@@ -111,6 +112,7 @@ body {
 ol,
 ul {
   list-style: none;
+  font-family: "Open Sans", serif;
 }
 blockquote,
 q {
@@ -126,4 +128,5 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+  font-family: "Open Sans", serif;
 }
